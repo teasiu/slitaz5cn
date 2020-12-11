@@ -14,4 +14,4 @@
     <br>【 linux /boot/bzImage initrd=/boot/rootfs.gz root=/dev/null video=-32 lang=zh_CN kmap=us TZ=Asia/Shanghai autologin 】
 4. 内置中文输入法，支持拼音，五笔等，ctrl+空格切换开关，shift切换中英文输入。
 5. 内置神雕的国内软件源地址，自动从国内源下载和更新软件包。
-6. 
+6. 国内源镜像http://ecoo.top:8083/dl/slitaz/slitaz-rolling-core64-cn.iso
