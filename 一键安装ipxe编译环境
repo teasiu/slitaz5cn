@@ -1,0 +1,3 @@
+#!/bin/sh
+xterm -hold -e 'sudo tazpkg -gi gcc make binutils perl liblzma-dev mtools syslinux slitaz-toolchain libisofs-dev'
+exit
