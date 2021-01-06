@@ -16,8 +16,8 @@
 <br>支持各种引导开机,grub4dos，grub2，syslinux，支持efi启动。
 <br>可以安装到U盘随身启动，也可以和其他pe合盘。
 <br>可以安装到硬盘也可以网络pxe启动。
-<br>启动代码请使用:
-<br>【 linux /boot/bzImage initrd=/boot/rootfs.gz root=/dev/null video=-32 lang=zh_CN kmap=us tz=Asia/Shanghai autologin 】
+<br>启动代码请自行在你的启动菜单添加使用:
+<br>【  root=/dev/null video=-32 lang=zh_CN kmap=us tz=Asia/Shanghai autologin 】
 <br>
 <br>4. 内置中文输入法,支持拼音,五笔等,ctrl+空格切换开关,shift切换中英文输入。
 <br>
