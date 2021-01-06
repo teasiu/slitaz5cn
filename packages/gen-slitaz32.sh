@@ -11,11 +11,11 @@ tazpkg install xz*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install tar*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install curl*.tazpkg --root=$ROOTFS --local
 tazpkg install git*.tazpkg --root=$ROOTFS --local
-tazpkg get locale-zh_CN locale-zh_CN-extra bash iptables linux64-netfilter isomaster gvfs-smb dosfstools mdadm
+tazpkg get locale-zh_CN locale-zh_CN-extra bash iptables linux-netfilter isomaster gvfs-smb dosfstools mdadm
 tazpkg get exfat-utils gftp xorg-xf86-video-vmware p7zip-full zip unzip cpio gzip transmission-daemon libevent axel
 tazpkg install locale-zh_CN*.tazpkg --root=$ROOTFS --nodeps --local
 yes | tazpkg install bash*.tazpkg --root=$ROOTFS --nodeps --local
-tazpkg install linux64-netfilter*.tazpkg --root=$ROOTFS --nodeps --local
+tazpkg install linux-netfilter*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install iptables*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install exfat-utils*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install gftp*.tazpkg --root=$ROOTFS --nodeps --local

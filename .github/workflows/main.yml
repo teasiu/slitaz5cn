@@ -31,8 +31,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
-#        with:
-#          ref: main
 
       - name: Space cleanup
         env:
@@ -46,10 +44,16 @@ jobs:
 
       - name: download iso and unzip iso
         run: |
-          wget http://distro.ibiblio.org/slitaz/iso/rolling/slitaz-rolling-core64.iso
+          wget http://ftp.uni-stuttgart.de/slitaz/iso/rolling/slitaz-rolling-core64.iso
           mkdir iso-old
           7z x slitaz-rolling-core64.iso -y -r -o./iso-old
-                    
+
+      - name: download iso32 and unzip iso32
+        run: |
+          wget http://distro.ibiblio.org/slitaz/iso/rolling/slitaz-rolling-core.iso
+          mkdir iso-old32
+          7z x slitaz-rolling-core.iso -y -r -o./iso-old32
+                              
       - name: docker build a new rootfs
         run: |
           docker build -t newrootfs -f ./dockerfile-rootfs .
@@ -59,6 +63,18 @@ jobs:
           docker run --name myrootfs newrootfs
           docker cp myrootfs:/tmp/rootfs-new.gz ./iso/mkiso/rootfs.gz
           cd ./iso
+          sh iso.sh
+          cd ../
+
+      - name: docker build a new rootfs32
+        run: |
+          docker build -t newrootfs32 -f ./dockerfile-rootfs32 .
+          
+      - name: copy rootfs32.gz outside of docker
+        run: |
+          docker run --name myrootfs32 newrootfs32
+          docker cp myrootfs32:/tmp/rootfs-new.gz ./iso32/mkiso/rootfs.gz
+          cd ./iso32
           sh iso.sh
 
 #      - name: Prepare artifact
@@ -91,4 +107,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./iso/slitaz5.0-rolling-core64-cn.iso
           asset_name: slitaz5.0-rolling-core64-cn.iso
+          asset_content_type: application/iso
+          
+      - name: Upload Release Asset2
+        id: upload-release-asset2 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./iso32/slitaz5.0-rolling-core32-cn.iso
+          asset_name: slitaz5.0-rolling-core32-cn.iso
           asset_content_type: application/iso
