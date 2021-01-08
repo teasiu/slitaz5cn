@@ -39,6 +39,7 @@ tazpkg install grsync*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install axel*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install teasiu*.tazpkg --root=$ROOTFS --nodeps --local
 cp -rf $ROOTFS/etc/xdg/openbox/menu.zh_CN.xml $ROOTFS/etc/xdg/openbox/menu.en.xml
+cp -a updatetime.txt $ROOTFS/etc
 mkdir -p $ROOTFS/etc/skel/.config/slitaz
 echo "root" > $ROOTFS/etc/skel/.config/slitaz/subox.conf
 echo "Name[zh_CN]=WiFi无线网络配置" >> $ROOTFS/usr/share/applications/wifi-box.desktop

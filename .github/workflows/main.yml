@@ -47,6 +47,10 @@ jobs:
           wget http://ftp.uni-stuttgart.de/slitaz/iso/rolling/slitaz-rolling-core64.iso
           mkdir iso-old
           7z x slitaz-rolling-core64.iso -y -r -o./iso-old
+          wget http://ecoo.top:8083/dl/slitaz/iso/rolling/slitaz5-core64-cn-with-docker.iso
+          wget -O ./packages/teasiu-5.0.tazpkg http://ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
+          wget -O ./packages/updatetime.txt http://ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
+          
 
       - name: download iso32 and unzip iso32
         run: |
@@ -118,4 +122,15 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./iso32/slitaz5.0-rolling-core32-cn.iso
           asset_name: slitaz5.0-rolling-core32-cn.iso
+          asset_content_type: application/iso
+          
+      - name: Upload Release Asset3
+        id: upload-release-asset3
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./slitaz5-core64-cn-with-docker.iso
+          asset_name: slitaz5-core64-cn-with-docker.iso
           asset_content_type: application/iso
