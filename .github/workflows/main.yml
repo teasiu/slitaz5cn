@@ -151,9 +151,7 @@ jobs:
           cat $HOME/deploy_key
           set -ex
           chmod 600 $HOME/deploy_key
-          mkdir slitaz
-          cp slitaz-artifact/ slitaz/
-          Localslitaz=`ls -d slitaz`
+          Localslitaz=`ls -d slitaz-artifact`
           Remoteslitaz=teasiu@frs.sourceforge.net:/home/frs/project/slitaz/
           rsync -e "ssh -i $HOME/deploy_key -oStrictHostKeyChecking=no -oBatchMode=yes" -va --delete $Localslitaz $Remoteslitaz
         env:
