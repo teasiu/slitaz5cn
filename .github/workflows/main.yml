@@ -85,11 +85,12 @@ jobs:
         run: |
           mkdir -p slitaz-artifact
           cp -a ./iso/slitaz5.0-rolling-core64-cn.iso  slitaz-artifact/
+          cp -a ./iso32/slitaz5.0-rolling-core32-cn.iso slitaz-artifact/
 
       - name: Deliver package
         uses: actions/upload-artifact@v2
         with:
-          name: slitaz5.0-rolling-core64-cn.iso
+#          name: slitaz5.0-rolling-core64-cn.iso
           path: slitaz-artifact/
 
       - name: Create Release
@@ -142,8 +143,8 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: slitaz5.0-rolling-core64-cn.iso
-          path: slitaz-artifact/slitaz5.0-rolling-core64-cn.iso
+#          name: slitaz5.0-rolling-core64-cn.iso
+          path: slitaz-artifact/
       - name: Upload to SourceForge
         run: |
           echo "$DEPLOY_KEY" > $HOME/deploy_key
@@ -151,8 +152,8 @@ jobs:
           set -ex
           chmod 600 $HOME/deploy_key
           mkdir slitaz
-          mv slitaz-artifact/slitaz5.0-rolling-core64-cn.iso slitaz
-          Localslitaz=`ls -d slitaz/slitaz5.0-rolling-core64-cn.iso`
+          mv slitaz-artifact/*.iso slitaz
+          Localslitaz=`ls -d slitaz/*.iso`
           Remoteslitaz=teasiu@frs.sourceforge.net:/home/frs/project/slitaz/slitaz5-rolling-core64
           rsync -e "ssh -i $HOME/deploy_key -oStrictHostKeyChecking=no -oBatchMode=yes" -va --delete $Localslitaz $Remoteslitaz
         env:
