@@ -58,15 +58,15 @@ jobs:
           mkdir iso-old32
           7z x slitaz-rolling-core.iso -y -r -o./iso-old32
                               
-      - name: docker build a new rootfs
+      - name: docker build a new rootfs64
         run: |
-          docker build -t newrootfs -f ./dockerfile-rootfs .
+          docker build -t newrootfs -f ./dockerfile-rootfs64 .
           
       - name: copy rootfs.gz outside of docker
         run: |
           docker run --name myrootfs newrootfs
-          docker cp myrootfs:/tmp/rootfs-new.gz ./iso/mkiso/rootfs.gz
-          cd ./iso
+          docker cp myrootfs:/tmp/rootfs-new.gz ./iso64/mkiso/rootfs.gz
+          cd ./iso64
           sh iso.sh
           cd ../
 
@@ -84,7 +84,7 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir -p slitaz-artifact
-          cp -a ./iso/slitaz5.0-rolling-core64-cn.iso  slitaz-artifact/
+          cp -a ./iso64/slitaz5.0-rolling-core64-cn.iso  slitaz-artifact/
           cp -a ./iso32/slitaz5.0-rolling-core32-cn.iso slitaz-artifact/
           cp -a ./slitaz5-core64-cn-with-docker.iso slitaz-artifact/
 
@@ -111,7 +111,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./iso/slitaz5.0-rolling-core64-cn.iso
+          asset_path: ./iso64/slitaz5.0-rolling-core64-cn.iso
           asset_name: slitaz5.0-rolling-core64-cn.iso
           asset_content_type: application/iso
           
