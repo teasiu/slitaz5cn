@@ -143,7 +143,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: slitaz5.0-rolling-core64-cn.iso
-          path: slitaz-artifact/
+          path: slitaz-artifact/slitaz5.0-rolling-core64-cn.iso
       - name: Upload to SourceForge
         run: |
           echo "$DEPLOY_KEY" > $HOME/deploy_key
@@ -151,7 +151,7 @@ jobs:
           set -ex
           chmod 600 $HOME/deploy_key
           mkdir slitaz
-          mv slitaz5.0-rolling-core64-cn.iso slitaz
+          mv slitaz-artifact/slitaz5.0-rolling-core64-cn.iso slitaz
           Localslitaz=`ls -d slitaz/slitaz5.0-rolling-core64-cn.iso`
           Remoteslitaz=teasiu@frs.sourceforge.net:/home/frs/project/slitaz/slitaz5-rolling-core64
           rsync -e "ssh -i $HOME/deploy_key -oStrictHostKeyChecking=no -oBatchMode=yes" -va --delete $Localslitaz $Remoteslitaz
