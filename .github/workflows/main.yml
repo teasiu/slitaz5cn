@@ -91,7 +91,7 @@ jobs:
       - name: Deliver package
         uses: actions/upload-artifact@v2
         with:
-          name: slitaz*.iso
+          name: slitaz
           path: slitaz-artifact/
 
       - name: Create Release
@@ -144,8 +144,8 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: slitaz*.iso
-          path: ./
+          name: slitaz
+          path: slitaz-artifact/
       - name: Upload to SourceForge
         run: |
           echo "$DEPLOY_KEY" > $HOME/deploy_key
