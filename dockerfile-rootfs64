@@ -18,7 +18,6 @@ RUN mkdir -p /tmp/rootfs && \
 	(zcat rootfs.gz 2>/dev/null || lzma d rootfs.gz -so) | cpio -id && \
 	rm rootfs.gz && \
 	cd / && \
-	sh /fast-mirrors.sh && \
 	sh /gen-slitaz64.sh && \
 	cd /tmp/rootfs && \
 	ls -l && \
