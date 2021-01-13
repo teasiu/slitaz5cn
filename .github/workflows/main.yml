@@ -84,8 +84,8 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir -p slitaz-artifact
-          cp -a ./iso64/slitaz5.0-rolling-core64-cn.iso  slitaz-artifact/
-          cp -a ./iso32/slitaz5.0-rolling-core32-cn.iso slitaz-artifact/
+          cp -a ./slitaz5.0-rolling-core64-cn.iso  slitaz-artifact/
+          cp -a ./slitaz5.0-rolling-core32-cn.iso slitaz-artifact/
           cp -a ./slitaz5-core64-cn-with-docker.iso slitaz-artifact/
 
       - name: Deliver package
