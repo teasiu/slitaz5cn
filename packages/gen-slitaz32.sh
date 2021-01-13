@@ -35,7 +35,7 @@ tazpkg install gvfs-smb*.tazpkg --root=$ROOTFS --local
 tazpkg install transmission-web-contrl-1.61.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install dosfstools*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install mdadm*.tazpkg --root=$ROOTFS --nodeps --local
-tazpkg install grsync*.tazpkg --root=$ROOTFS --nodeps --local
+tazpkg install grsync*.tazpkg --root=$ROOTFS --local
 tazpkg install axel*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install teasiu*.tazpkg --root=$ROOTFS --nodeps --local
 cp -rf $ROOTFS/etc/xdg/openbox/menu.zh_CN.xml $ROOTFS/etc/xdg/openbox/menu.en.xml

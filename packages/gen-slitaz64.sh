@@ -2,6 +2,7 @@
 URL="http://ecoo.top:8083/dl/slitaz"
 ROOTFS="/tmp/rootfs"
 echo "$URL/packages/5.0/" > $ROOTFS/var/lib/tazpkg/mirror
+tazpkg install linux64-3.16.55.tazpkg --root=$ROOTFS --nodeps --local --forced
 tazpkg install yong-2.5.0.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install sudocn-1.8.4.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install ghost-5.0.1.tazpkg --root=$ROOTFS --nodeps --local
@@ -35,7 +36,7 @@ tazpkg install gvfs-smb*.tazpkg --root=$ROOTFS --local
 tazpkg install transmission-web-contrl-1.61.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install dosfstools*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install mdadm*.tazpkg --root=$ROOTFS --nodeps --local
-tazpkg install grsync*.tazpkg --root=$ROOTFS --nodeps --local
+tazpkg install grsync*.tazpkg --root=$ROOTFS --local
 tazpkg install axel*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install teasiu*.tazpkg --root=$ROOTFS --nodeps --local
 cp -rf $ROOTFS/etc/xdg/openbox/menu.zh_CN.xml $ROOTFS/etc/xdg/openbox/menu.en.xml

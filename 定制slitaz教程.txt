@@ -1,0 +1,16 @@
+本定制手法需要在ubuntu20.04下操作：
+
+首先需要配置ubuntu的docker和必要的环境：
+sudo apt update && sudo apt install p7zip-full genisoimage curl git bash
+一键安装docker
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+
+然后
+git clone https://github.com/teasiu/slitaz5cn.git
+cd slitaz5cn
+sudo bash mk-slitaz64.sh
+
+完成后将会自动在文件夹内多了一个定制好的slitaz5.0-rolling-core64-cn.iso
+
+修改和添加软件包，请进入packages的gen-slitaz64.sh编辑和调整。
+

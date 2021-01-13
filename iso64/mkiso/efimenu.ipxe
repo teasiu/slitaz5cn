@@ -1,8 +1,0 @@
-#!ipxe
-
-:retry
-ifconf net0 || goto retry
-kernel http://ecoo.top:8083/dl/slitaz/vmlinuz-3.16.55-slitaz64
-initrd http://ecoo.top:8083/dl/slitaz/rootfs.gz
-imgargs vmlinuz-3.16.55-slitaz64 initrd=rootfs.gz rw root=/dev/null video=-32 lang=zh_CN kmap=us autologin
-boot
