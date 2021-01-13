@@ -111,7 +111,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./iso64/slitaz5.0-rolling-core64-cn.iso
+          asset_path: ./slitaz5.0-rolling-core64-cn.iso
           asset_name: slitaz5.0-rolling-core64-cn.iso
           asset_content_type: application/iso
           
@@ -122,7 +122,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./iso32/slitaz5.0-rolling-core32-cn.iso
+          asset_path: ./slitaz5.0-rolling-core32-cn.iso
           asset_name: slitaz5.0-rolling-core32-cn.iso
           asset_content_type: application/iso
           
