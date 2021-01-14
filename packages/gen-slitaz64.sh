@@ -38,6 +38,8 @@ tazpkg install dosfstools*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install mdadm*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install grsync*.tazpkg --root=$ROOTFS --local
 tazpkg install axel*.tazpkg --root=$ROOTFS --nodeps --local
+tazpkg get xorg-xf86-video-geode xorg-xf86-video-ati xorg-xf86-video-nouveau xorg-xf86-video-intel xorg-xf86-video-radeonhd xorg-xf86-video-nv
+tazpkg install xorg-xf86-video*.tazpkg --root=$ROOTFS --local
 tazpkg install teasiu*.tazpkg --root=$ROOTFS --nodeps --local
 cp -rf $ROOTFS/etc/xdg/openbox/menu.zh_CN.xml $ROOTFS/etc/xdg/openbox/menu.en.xml
 cp -a updatetime.txt $ROOTFS/etc
