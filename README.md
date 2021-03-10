@@ -6,7 +6,21 @@
   <br>这个系统可以通过Tazpkg软件包管理器添加软件来增加各种各样的功能，也可以用它升级系统来保持系统最 安全、最新.
 # 支持自主定制
 <br>制作了新型定制办法，定制方法已经在源码中说明，请参照自主定制属于你的slitaz。
-<br>
+<br>本定制手法需要在ubuntu20.04下操作：
+<br>首先需要配置ubuntu的docker和必要的环境：
+```
+sudo apt update && sudo apt install p7zip-full genisoimage curl git bash
+一键安装docker
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
+然后
+```
+git clone https://github.com/teasiu/slitaz5cn.git
+cd slitaz5cn
+sudo bash mk-slitaz64.sh
+```
+<br>完成后将会自动在文件夹内多了一个定制好的slitaz5.0-rolling-core64-cn.iso
+<br>修改和添加软件包，请进入packages的gen-slitaz64.sh编辑和调整。
 # 使用
 <br>请仔细阅读下面这段定制说明。
 <br>
