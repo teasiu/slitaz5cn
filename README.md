@@ -1,4 +1,7 @@
 # slitaz5cn
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/teasiu/slitaz5cn?style=for-the-badge&label=Download)](https://github.com/teasiu/slitaz5cn/releases/latest)
+[![GitHub release (latest by date)](https://img.shields.io/github/downloads/teasiu/slitaz5cn/total)](https://github.com/teasiu/slitaz5cn/releases)
+
 神雕定制slitaz中文版
   <br>Slitaz 是一个免费小巧的GNU/Linux发行版。它可以从光盘或USB设备加载，完整地在内存中运行，也可以安装到硬盘中。
   <br>Slitaz以LiveCD的形式 发布，您可以把它刻录到光盘，并从光盘启动。你也可以将它与其它例如win-pe🈴盘。
