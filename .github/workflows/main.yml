@@ -2,7 +2,7 @@
 
 name: slitaz-5.0
 
-evn:
+env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 #on:
