@@ -115,6 +115,7 @@ jobs:
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           touch release.txt
+          echo "#  hello slitaz!" > release.txt
           echo "::set-output name=status::success"
 
       - name: SSH connection to Actions
@@ -124,38 +125,27 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           
-      - name: Upload Release Asset2
-        id: upload-release-asset2 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.tag.outputs.upload_url }}
-          asset_path: ./slitaz5.0-rolling-core32-cn.iso
-          asset_name: slitaz5.0-rolling-core32-cn.iso
-          asset_content_type: application/iso
-          
-      - name: Upload Release Asset3
-        id: upload-release-asset3
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.tag.outputs.upload_url }}
-          asset_path: ./slitaz5-core64-cn-with-docker.iso
-          asset_name: slitaz5-core64-cn-with-docker.iso
-          asset_content_type: application/iso
 
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
+      - name: Upload firmware to release
+        uses: softprops/action-gh-release@v1
+        if: steps.tag.outputs.status == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.tag.outputs.upload_url }}
-          asset_path: ./slitaz5.0-rolling-core64-cn.iso
-          asset_name: slitaz5.0-rolling-core64-cn.iso
-          asset_content_type: application/iso
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          body_path: release.txt
+          files: slitaz-artifact/*
+
+#      - name: Upload Release Asset
+#        id: upload-release-asset 
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.tag.outputs.upload_url }}
+#          asset_path: ./slitaz5.0-rolling-core64-cn.iso
+#          asset_name: slitaz5.0-rolling-core64-cn.iso
+#          asset_content_type: application/iso
                  
   slitaz:
     runs-on: ubuntu-20.04
