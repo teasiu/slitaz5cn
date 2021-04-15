@@ -46,9 +46,9 @@ echo $fast_mirror
 [ ! -e slitaz-rolling-core64.iso ] && wget $fast_mirror/iso/rolling/slitaz-rolling-core64.iso
 mkdir iso-old
 [ ! -d iso-old/boot ] && 7z x slitaz-rolling-core64.iso -y -r -o./iso-old
-[ ! -e packages/linux64-3.16.55.tazpkg ] && wget -O ./packages/linux64-3.16.55.tazpkg http://ecoo.top:8083/dl/slitaz/linux64-3.16.55.tazpkg
-[ ! -e packages/teasiu-5.0.tazpkg ] && wget -O ./packages/teasiu-5.0.tazpkg http://ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
-[ ! -e packages/updatetime.txt ] && wget -O ./packages/updatetime.txt http://ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
+[ ! -e packages/linux64-3.16.55.tazpkg ] && wget -O ./packages/linux64-3.16.55.tazpkg http://www.ecoo.top:8083/dl/slitaz/linux64-3.16.55.tazpkg
+[ ! -e packages/teasiu-5.0.tazpkg ] && wget -O ./packages/teasiu-5.0.tazpkg http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
+[ ! -e packages/updatetime.txt ] && wget -O ./packages/updatetime.txt http://www.ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
 docker build -t newrootfs -f ./dockerfile-rootfs64 .
 docker run --name myrootfs newrootfs
 docker cp myrootfs:/tmp/rootfs-new.gz ./iso64/mkiso/rootfs.gz

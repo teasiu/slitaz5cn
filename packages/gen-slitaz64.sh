@@ -1,7 +1,5 @@
 #!/bin/sh
-URL="http://ecoo.top:8083/dl/slitaz"
 ROOTFS="/tmp/rootfs"
-echo "$URL/packages/5.0/" > $ROOTFS/var/lib/tazpkg/mirror
 tazpkg install linux64-3.16.55.tazpkg --root=$ROOTFS --nodeps --local --forced
 tazpkg install yong-2.5.0.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install sudocn-1.8.4.tazpkg --root=$ROOTFS --nodeps --local
