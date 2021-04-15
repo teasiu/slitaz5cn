@@ -1,6 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
 name: slitaz-5.0
+
+evn:
+  UPLOAD_RELEASE: true
+  TZ: Asia/Shanghai
 #on:
 #  push:
 #    branches: 
@@ -9,13 +13,23 @@ name: slitaz-5.0
 #      - cron: 0 20 1 * *
 #    release:
 #      types: [published]
-on:
-  push:
+#on:
+#  push:
     # Sequence of patterns matched against refs/tags
-    tags:
-      - '*'
-    release:
-      types: [published]
+#    tags:
+#      - '*'
+#    release:
+#      types: [published]
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: true
+        default: 'false'
+  schedule:
+    - cron: 0 11 * * 1        
 
 jobs:
 
@@ -41,20 +55,21 @@ jobs:
           sudo -E apt-get -y install zip unzip genisoimage p7zip-full p7zip-rar
           sudo -E apt-get -y autoremove --purge
           sudo -E apt-get clean
+          sudo timedatectl set-timezone "$TZ"
 
       - name: download iso and unzip iso
         run: |
-          wget http://ftp.uni-stuttgart.de/slitaz/iso/rolling/slitaz-rolling-core64.iso
+          wget http://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso
           mkdir iso-old
           7z x slitaz-rolling-core64.iso -y -r -o./iso-old
-          wget http://ecoo.top:8083/dl/slitaz/iso/rolling/slitaz5-core64-cn-with-docker.iso
-          wget -O ./packages/teasiu-5.0.tazpkg http://ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
-          wget -O ./packages/updatetime.txt http://ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
+          wget http://www.ecoo.top:8083/dl/slitaz/iso/rolling/slitaz5-core64-cn-with-docker.iso
+          wget -O ./packages/teasiu-5.0.tazpkg http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
+          wget -O ./packages/updatetime.txt http://www.ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
           
 
       - name: download iso32 and unzip iso32
         run: |
-          wget http://distro.ibiblio.org/slitaz/iso/rolling/slitaz-rolling-core.iso
+          wget http://mirror.slitaz.org/iso/rolling/slitaz-rolling-core.iso
           mkdir iso-old32
           7z x slitaz-rolling-core.iso -y -r -o./iso-old32
                               
@@ -94,16 +109,20 @@ jobs:
           name: slitaz5-rolling-core64
           path: slitaz-artifact/
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Generate release tag
+        id: tag
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+          touch release.txt
+          echo "::set-output name=status::success"
+
+      - name: SSH connection to Actions
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           
       - name: Upload Release Asset2
         id: upload-release-asset2 
@@ -111,7 +130,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ steps.tag.outputs.upload_url }}
           asset_path: ./slitaz5.0-rolling-core32-cn.iso
           asset_name: slitaz5.0-rolling-core32-cn.iso
           asset_content_type: application/iso
@@ -122,7 +141,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ steps.tag.outputs.upload_url }}
           asset_path: ./slitaz5-core64-cn-with-docker.iso
           asset_name: slitaz5-core64-cn-with-docker.iso
           asset_content_type: application/iso
@@ -133,7 +152,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ steps.tag.outputs.upload_url }}
           asset_path: ./slitaz5.0-rolling-core64-cn.iso
           asset_name: slitaz5.0-rolling-core64-cn.iso
           asset_content_type: application/iso
