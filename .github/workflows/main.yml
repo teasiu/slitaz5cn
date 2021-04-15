@@ -4,6 +4,7 @@ name: slitaz-5.0
 
 env:
   UPLOAD_RELEASE: true
+  UPLOAD_artifact: false
   TZ: Asia/Shanghai
 #on:
 #  push:
@@ -103,8 +104,9 @@ jobs:
           cp -a ./slitaz5.0-rolling-core32-cn.iso slitaz-artifact/
           cp -a ./slitaz5-core64-cn-with-docker.iso slitaz-artifact/
 
-      - name: Deliver package
+      - name: upload to artifact
         uses: actions/upload-artifact@v2
+        if: env.UPLOAD_artifact == 'true' && !cancelled()
         with:
           name: slitaz5-rolling-core64
           path: slitaz-artifact/
@@ -136,6 +138,20 @@ jobs:
           body_path: release.txt
           files: slitaz-artifact/*
 
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 1
+          keep_minimum_runs: 3
+
+      - name: Remove old Releases
+        uses: dev-drprasad/delete-older-releases@v0.1.0
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        with:
+          keep_latest: 3
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      - name: Upload Release Asset
 #        id: upload-release-asset 
 #        uses: actions/upload-release-asset@v1
