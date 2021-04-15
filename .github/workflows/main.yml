@@ -4,7 +4,7 @@ name: slitaz-5.0
 
 env:
   UPLOAD_RELEASE: true
-  UPLOAD_artifact: false
+  UPLOAD_artifact: true
   TZ: Asia/Shanghai
 #on:
 #  push:
