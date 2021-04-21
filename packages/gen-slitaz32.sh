@@ -1,5 +1,6 @@
 #!/bin/sh
 ROOTFS="/tmp/rootfs"
+tazpkg install linux-3.16.55.tazpkg --root=$ROOTFS --nodeps --local --forced
 tazpkg install yong-2.5.0.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install sudocn-1.8.4.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install ghost-5.0.1.tazpkg --root=$ROOTFS --nodeps --local
@@ -35,9 +36,9 @@ tazpkg install dosfstools*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install mdadm*.tazpkg --root=$ROOTFS --nodeps --local
 tazpkg install grsync*.tazpkg --root=$ROOTFS --local
 tazpkg install axel*.tazpkg --root=$ROOTFS --nodeps --local
-tazpkg get xorg-xf86-video-geode xorg-xf86-video-ati xorg-xf86-video-nouveau xorg-xf86-video-intel xorg-xf86-video-radeonhd xorg-xf86-video-nv
-tazpkg install xorg-xf86-video*.tazpkg --root=$ROOTFS --local
-tazpkg -gi openvpn --root=$ROOTFS --local
+#tazpkg get xorg-xf86-video-geode xorg-xf86-video-ati xorg-xf86-video-nouveau xorg-xf86-video-intel xorg-xf86-video-radeonhd xorg-xf86-video-nv
+#tazpkg install xorg-xf86-video*.tazpkg --root=$ROOTFS --local
+#tazpkg -gi openvpn --root=$ROOTFS --local
 tazpkg -gi linux64-video --root=$ROOTFS --local
 tazpkg -gi linux64-cifs --root=$ROOTFS --local
 tazpkg -gi linux64-acpi --root=$ROOTFS --local

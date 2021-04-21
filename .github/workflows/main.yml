@@ -63,7 +63,6 @@ jobs:
           wget http://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso
           mkdir iso-old
           7z x slitaz-rolling-core64.iso -y -r -o./iso-old
-          wget http://www.ecoo.top:8083/dl/slitaz/iso/rolling/slitaz5-core64-cn-with-docker.iso
           wget -O ./packages/teasiu-5.0.tazpkg http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
           wget -O ./packages/updatetime.txt http://www.ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
           
@@ -73,6 +72,12 @@ jobs:
           wget http://mirror.slitaz.org/iso/rolling/slitaz-rolling-core.iso
           mkdir iso-old32
           7z x slitaz-rolling-core.iso -y -r -o./iso-old32
+
+      - name: download iso64 and unzip iso64 for dockerd
+        run: |
+          wget http://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso
+          mkdir iso-old64
+          7z x slitaz-rolling-core64.iso -y -r -o./iso-old64
                               
       - name: docker build a new rootfs64
         run: |
@@ -97,12 +102,23 @@ jobs:
           cd ./iso32
           sh iso.sh
 
+      - name: docker build a new rootfs64d
+        run: |
+          docker build -t newrootfs64d -f ./dockerfile-rootfs64d .
+          
+      - name: copy rootfs64d.gz outside of docker
+        run: |
+          docker run --name myrootfs64 newrootfs64d
+          docker cp myrootfs64:/tmp/rootfs-new.gz ./iso64d/mkiso/rootfs.gz
+          cd ./iso64d
+          sh iso.sh
+
       - name: Prepare artifact
         run: |
           mkdir -p slitaz-artifact
           cp -a ./slitaz5.0-rolling-core64-cn.iso  slitaz-artifact/
           cp -a ./slitaz5.0-rolling-core32-cn.iso slitaz-artifact/
-          cp -a ./slitaz5-core64-cn-with-docker.iso slitaz-artifact/
+          cp -a ./slitaz5.0-rolling-core64-cn-docker.iso slitaz-artifact/
 
       - name: upload to artifact
         uses: actions/upload-artifact@v2

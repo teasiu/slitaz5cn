@@ -1,0 +1,14 @@
+FROM slitazcn/slitaz-5.0-base
+COPY ./iso-old64/boot/rootfs.gz ./packages/* ./
+RUN mkdir -p /tmp/rootfs && \
+	ls -l && \
+	mv rootfs.gz /tmp/rootfs && \
+	cd /tmp/rootfs && \
+	(zcat rootfs.gz 2>/dev/null || lzma d rootfs.gz -so) | cpio -id && \
+	rm rootfs.gz && \
+	cd / && \
+	sh /gen-slitaz64d.sh && \
+	cd /tmp/rootfs && \
+	ls -l && \
+	find . -print | cpio -o -H newc | lzma e -si -so > ../rootfs-new.gz
+

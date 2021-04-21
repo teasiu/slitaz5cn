@@ -1,0 +1,59 @@
+# Ubuntu 13.04 GRUB2 theme
+
+desktop-image: "wallpaper.png"
+title-text: ""
+terminal-box: "terminal_*.png"
+#terminal-font: "Gnu Unifont Mono Regular 16"
+
++ boot_menu {
+  left = 24%-5
+  width = 55%+11
+  top = 22%-5
+  height = 55%+21
+  menu_pixmap_style = "boot_menu_*.png"
+  item_font = "DejaVu Sans Bold 14"
+  item_color = "#000000"
+  item_height = 48
+  item_icon_space = 8
+  item_spacing = 2
+  selected_item_font = "DejaVu Sans Bold 14"
+  selected_item_color= "#FFFFFF"
+  selected_item_pixmap_style = "select_*.png"
+  icon_height = 48
+  icon_width = 48
+  icon_spacing = 25
+  scrollbar = true
+  scrollbar_width = 3
+  scrollbar_thumb = "slider_*.png"
+}
+
++ progress_bar {
+  id = "__timeout__"
+  left = 20%
+  top = 80%+15
+  height = 20
+  width = 65%
+  font = "DejaVu Sans Regular 12"
+  text_color = "#333333"
+  text = "默认选项系统将在 %d 秒后启动，按任意键可终止..."
+  bar_style = "progress_*.png"
+  highlight_style = "progress_highlight_*.png"
+}
+
+# The Ubuntu 13.04/Raring Ringtail logo image.
++ image {
+  top = 100%-140
+  left = 100%-350
+  width = 350
+  hight = 140
+  file = "slitaz4cn.png"
+}
+
+# The navigation instructions
++ vbox {
+    left = 5%
+    top = 90%
+    + label { text = "- 按上下键选择高亮菜单,按回车键启动" color = "#ADA9A5" font = "DejaVu Sans Regular 12" }
+    + label { text = "- 按 'e' 键编辑所选菜单的命令行" color = "#ADA9A5" font = "DejaVu Sans Regular 12" }
+    + label { text = "- 按 'c' 进入程序命令行" color = "#ADA9A5" font = "DejaVu Sans Regular 12" }
+}
