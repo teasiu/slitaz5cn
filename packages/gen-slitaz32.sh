@@ -39,11 +39,11 @@ tazpkg install axel*.tazpkg --root=$ROOTFS --nodeps --local
 #tazpkg get xorg-xf86-video-geode xorg-xf86-video-ati xorg-xf86-video-nouveau xorg-xf86-video-intel xorg-xf86-video-radeonhd xorg-xf86-video-nv
 #tazpkg install xorg-xf86-video*.tazpkg --root=$ROOTFS --local
 #tazpkg -gi openvpn --root=$ROOTFS --local
-tazpkg -gi linux64-video --root=$ROOTFS --local
-tazpkg -gi linux64-cifs --root=$ROOTFS --local
-tazpkg -gi linux64-acpi --root=$ROOTFS --local
-tazpkg -gi linux64-configfs --root=$ROOTFS --local
-tazpkg -gi linux64-aufs --root=$ROOTFS --local
+tazpkg -gi linux-video --root=$ROOTFS --local
+tazpkg -gi linux-cifs --root=$ROOTFS --local
+tazpkg -gi linux-acpi --root=$ROOTFS --local
+tazpkg -gi linux-configfs --root=$ROOTFS --local
+tazpkg -gi linux-aufs --root=$ROOTFS --local
 tazpkg -gi nfs-utils --root=$ROOTFS --local
 tazpkg install teasiu*.tazpkg --root=$ROOTFS --nodeps --local
 cp -rf $ROOTFS/etc/xdg/openbox/menu.zh_CN.xml $ROOTFS/etc/xdg/openbox/menu.en.xml
