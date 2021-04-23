@@ -75,8 +75,8 @@ sudo bash mk-slitaz64.sh
 <br>https://github.com/teasiu/slitaz5cn
 <br>https://sourceforge.net/projects/slitaz/
 <br>http://www.slitaz.cn:8083 （推荐）
+<br>
+<br>
 
-<br>
-<br>
-![截图](https://github.com/teasiu/slitaz5cn/blob/main/homepage.png)
+![](homepage.png)
 
