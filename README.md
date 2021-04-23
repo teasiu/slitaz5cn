@@ -78,4 +78,4 @@ sudo bash mk-slitaz64.sh
 
 <br>
 <br>
-![](homepage.png)
+![](./homepage.png)
