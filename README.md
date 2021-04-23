@@ -78,5 +78,5 @@ sudo bash mk-slitaz64.sh
 
 <br>
 <br>
-![截图](homepage.png)
+![截图](https://github.com/teasiu/slitaz5cn/blob/main/homepage.png)
 
