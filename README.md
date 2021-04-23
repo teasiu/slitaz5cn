@@ -74,8 +74,8 @@ sudo bash mk-slitaz64.sh
 <br>项目下载地址更新为(三处同步更新):
 <br>https://github.com/teasiu/slitaz5cn
 <br>https://sourceforge.net/projects/slitaz/
-<br>http://ecoo.top:8083 （推荐）
+<br>http://www.slitaz.cn:8083 （推荐）
 
 <br>
 <br>
-
+![](/homepage.png)
