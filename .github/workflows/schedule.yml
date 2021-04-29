@@ -14,9 +14,9 @@ jobs:
 
       - name: Update teasiu-5.0.tazpkg Version
         run: |
-          LASTEST_TAG="$( curl -fsSL "http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg" | md5sum )"
+          LASTEST_TAG="$( curl -fsSL "http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg" | md5sum | cut -d" " -f1 )"
           echo "LASTEST_TAG=$LASTEST_TAG" >> ${GITHUB_ENV}
-          CURRENT_TAG="$( md5sum packages/teasiu-5.0.tazpkg )"
+          CURRENT_TAG="$( md5sum packages/teasiu-5.0.tazpkg | cut -d" " -f1 )"
           echo "CURRENT_TAG=$CURRENT_TAG" >> ${GITHUB_ENV}
           if [ ${CURRENT_TAG} != ${LASTEST_TAG} ]
           then
@@ -24,7 +24,7 @@ jobs:
           fi
 
       - name: Push
-        if: env.CURRENT_TAG != env.LASTEST_TAG
+        if: env.CURRENT_TAG != env.LASTEST_TAG && !cancelled()
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
