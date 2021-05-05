@@ -30,3 +30,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -am "Update teasiu-5.0.tazpkg to ${LASTEST_TAG}"
           git push -v --progress
+          
+      - name: Delete workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          retain_days: 1
+          keep_minimum_runs: 3
