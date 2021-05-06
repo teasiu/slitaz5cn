@@ -12,7 +12,7 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v2
 
-      - name: Update firefox.tazpkg Version
+      - name: Update linux64-3.16.55.tazpkg Version
         run: |
           LASTEST_TAG="$( curl -fsSL "http://www.ecoo.top:8083/dl/slitaz/linux64-3.16.55.tazpkg" | md5sum | cut -d" " -f1 )"
           echo "LASTEST_TAG=$LASTEST_TAG" >> ${GITHUB_ENV}
