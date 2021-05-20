@@ -78,5 +78,5 @@ sudo bash mk-slitaz64.sh
 <br>
 <br>
 
-![](homepage.png)
+![](https://cdn.jsdelivr.net/gh/teasiu/pic@master/2021/05/20/47194590.jpg)
 
