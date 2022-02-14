@@ -39,7 +39,7 @@ sudo bash mk-slitaz64.sh
 <br>【  root=/dev/null video=-32 lang=zh_CN kmap=us tz=Asia/Shanghai autologin 】
 <br>4. 内置中文输入法,支持拼音,五笔等,ctrl+空格切换开关,shift切换中英文输入。
 <br>5. 内置神雕的国内软件源地址,自动从国内源下载和更新软件包。
-<br>6. 国内源镜像http://ecoo.top:8083/dl/slitaz/iso/rolling
+<br>6. 国内源镜像http://slitaz.cn
 <br>7. 增加sudo加权功能,在命令前sudo即可使用管理权限。
 <br>8. 增加著名的诺顿精灵GHOST。可用于系统备份维护。
 <br>9. 内置gpartd磁盘分区格式程序,可用于电脑硬件维护。
@@ -74,7 +74,7 @@ sudo bash mk-slitaz64.sh
 <br>项目下载地址更新为(三处同步更新):
 <br>https://github.com/teasiu/slitaz5cn
 <br>https://sourceforge.net/projects/slitaz/
-<br>http://www.slitaz.cn:8083 （推荐）
+<br>http://www.slitaz.cn （推荐）
 <br>
 <br>
 
