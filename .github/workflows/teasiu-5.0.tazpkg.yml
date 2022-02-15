@@ -14,13 +14,13 @@ jobs:
 
       - name: Update teasiu-5.0.tazpkg Version
         run: |
-          LASTEST_TAG="$( curl -fsSL "http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg" | md5sum | cut -d" " -f1 )"
+          LASTEST_TAG="$( curl -fsSL "https://slitaz.cn/dl/teasiu-5.0.tazpkg" | md5sum | cut -d" " -f1 )"
           echo "LASTEST_TAG=$LASTEST_TAG" >> ${GITHUB_ENV}
           CURRENT_TAG="$( md5sum packages/teasiu-5.0.tazpkg | cut -d" " -f1 )"
           echo "CURRENT_TAG=$CURRENT_TAG" >> ${GITHUB_ENV}
           if [ ${CURRENT_TAG} != ${LASTEST_TAG} ]
           then
-            wget -O ./packages/teasiu-5.0.tazpkg http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
+            wget -O ./packages/teasiu-5.0.tazpkg https://slitaz.cn/dl/teasiu-5.0.tazpkg
           fi
 
       - name: Push
