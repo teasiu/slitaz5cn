@@ -63,8 +63,8 @@ jobs:
           wget http://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso
           mkdir iso-old
           7z x slitaz-rolling-core64.iso -y -r -o./iso-old
-          wget -O ./packages/teasiu-5.0.tazpkg http://www.ecoo.top:8083/dl/slitaz/teasiu-5.0.tazpkg
-          wget -O ./packages/updatetime.txt http://www.ecoo.top:8083/dl/slitaz/iso/rolling/slitaz-rolling-core64-chinese-updatetime.txt
+          wget -O ./packages/teasiu-5.0.tazpkg https://slitaz.cn/dl/teasiu-5.0.tazpkg
+          wget -O ./packages/updatetime.txt https://slitaz.cn/dl/rolling/slitaz-rolling-core64-chinese-updatetime.txt
           
 
       - name: download iso32 and unzip iso32
