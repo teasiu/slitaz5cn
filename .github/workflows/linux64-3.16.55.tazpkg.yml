@@ -14,13 +14,13 @@ jobs:
 
       - name: Update linux64-3.16.55.tazpkg Version
         run: |
-          LASTEST_TAG="$( curl -fsSL "http://www.ecoo.top:8083/dl/slitaz/linux64-3.16.55.tazpkg" | md5sum | cut -d" " -f1 )"
+          LASTEST_TAG="$( curl -fsSL "https://slitaz.cn/dl/linux64-3.16.55.tazpkg" | md5sum | cut -d" " -f1 )"
           echo "LASTEST_TAG=$LASTEST_TAG" >> ${GITHUB_ENV}
           CURRENT_TAG="$( md5sum packages/linux64-3.16.55.tazpkg | cut -d" " -f1 )"
           echo "CURRENT_TAG=$CURRENT_TAG" >> ${GITHUB_ENV}
           if [ ${CURRENT_TAG} != ${LASTEST_TAG} ]
           then
-            wget -O ./packages/linux64-3.16.55.tazpkg http://www.ecoo.top:8083/dl/slitaz/linux64-3.16.55.tazpkg
+            wget -O ./packages/linux64-3.16.55.tazpkg https://slitaz.cn/dl/linux64-3.16.55.tazpkg
           fi
 
       - name: Push
