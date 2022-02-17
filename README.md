@@ -1,4 +1,4 @@
-# slitaz5cn
+# slitaz.cn
 [![GitHub release (latest by date)](https://img.shields.io/github/downloads/teasiu/slitaz5cn/total)](https://github.com/teasiu/slitaz5cn/releases)
 [![GitHub Releases](https://img.shields.io/github/downloads/teasiu/slitaz5cn/latest/total?style=flat-square&logo=github)](https://github.com/teasiu/slitaz5cn/releases)
 [![GitHub All Releases](https://img.shields.io/github/downloads/teasiu/slitaz5cn/total?label=downloads-total&logo=github&style=flat-square)](https://github.com/teasiu/slitaz5cn/releases)
